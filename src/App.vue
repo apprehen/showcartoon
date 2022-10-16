@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <el-button>有一吗</el-button>
+    <!-- 一级路由 -->
+    <router-view></router-view>
   </div>
 </template>
 
