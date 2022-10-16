@@ -1,7 +1,7 @@
 {
   "name": "vue_event",
   "version": "1.0.0",
-  "description": "学习一下内",
+  "description": "学习一下捏",
   "author": "3514392356@qq.com <3514392356@qq.com>",
   "private": true,
   "scripts": {
@@ -13,6 +13,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "element-ui": "^2.15.10",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
@@ -48,6 +49,8 @@
     "html-webpack-plugin": "^2.30.1",
     "jest": "^22.0.4",
     "jest-serializer-vue": "^0.3.0",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
     "node-notifier": "^5.1.2",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
