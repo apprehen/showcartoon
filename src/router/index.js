@@ -6,6 +6,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      name: 'register',
       path: '/reg',
       component: () => import('@/views/register/register.vue')
       // webpack提供的import函数来路由懒加载导入组件

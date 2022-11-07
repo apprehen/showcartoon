@@ -1,7 +1,7 @@
 <template>
-  <dir>
+  <div>
     My_register_vue
-  </dir>
+  </div>
 </template>
 
 <script>

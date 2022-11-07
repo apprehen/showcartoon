@@ -23,16 +23,17 @@
       </div>
       <div class="login_right">
         <h1 class="title">TODOLIST管理后台</h1>
-        <el-form :label-position="labelPosition" label-width="80px">
+        <el-form :label-position="labelPosition" :model="form" label-width="80px">
           <el-form-item label="用户名">
-            <el-input></el-input>
+            <el-input placeholder="用户名" type="text" v-model="form.userName"></el-input>
           </el-form-item>
           <el-form-item label="密码">
-            <el-input></el-input>
+            <el-input placeholder="密码" type="password" v-model="form.passWord"></el-input>
           </el-form-item>
           <el-form-item label="确认密码">
-            <el-input></el-input>
+            <el-input placeholder="确认密码" type="password" v-model="form.repassWord"></el-input>
           </el-form-item>
+          <el-button type="whiteBackground" @click="loginUser">提交</el-button>
         </el-form>
       </div>
     </div>
@@ -44,7 +45,24 @@ export default {
   name: 'my_login',
   data () {
     return {
-      labelPosition: 'left'
+      labelPosition: 'left',
+      form: {
+        userName: '',
+        passWord: '',
+        repassWord: ''
+      }
+    }
+  },
+  methods: {
+    loginUser () {
+      let that = this
+      if (this.form.userName === 'admin' && this.form.passWord === 'admin123') {
+        that.$router.push({
+          path: '/reg'
+        })
+      } else {
+        alert('用户名或密码错误')
+      }
     }
   }
 }
@@ -74,7 +92,7 @@ export default {
     height: 100vh;
     position: absolute;
     z-index: 2;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.8);
   }
   .login_warpper{
     width: 70%;
@@ -200,5 +218,30 @@ export default {
       }
     }
   }
+}
+.el-button--whiteBackground {
+  color: #2D6EFB;
+  width: 200px;
+  height: 50px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15%;
+  margin-top: 5%;
+  // background-color: #2D6EFB;
+  border-color: #2D6EFB;
+}
+.el-button--whiteBackground:focus,
+.el-button--whiteBackground:hover {
+  background: #2D6EFB;
+  border-color: #2D6EFB;
+  color: #fff;
+}
+.el-button--whiteBackground.is-active,
+.el-button--whiteBackground:active {
+  background: #FFFFFF;
+  border-color: #2D6EFB;
+  color: #2D6EFB;
 }
 </style>
