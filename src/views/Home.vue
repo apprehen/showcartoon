@@ -7,7 +7,7 @@
       :options="options"
     />
     <section><Swiper></Swiper></section>
-    <!-- <Swiper></Swiper> -->
+    <Icons></Icons>
     <Tabbar></Tabbar>
   </div>
 </template>
@@ -16,6 +16,7 @@
 import Tabbar from '@/components/common/Tabbar.vue'
 import Header from '@/components/home/header.vue'
 import Swiper from '@/components/home/Swiper.vue'
+import Icons from '@/components/home/Icons.vue'
 export default {
   name: 'Home',
   data () {
@@ -42,7 +43,8 @@ export default {
   components: {
     Tabbar,
     Header,
-    Swiper
+    Swiper,
+    Icons
   }
 }
 </script>
