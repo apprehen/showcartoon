@@ -1,12 +1,17 @@
 <template>
   <div>
     我是List
+    <Tabbar></Tabbar>
   </div>
 </template>
 
 <script>
+import Tabbar from '../components/common/Tabbar.vue'
 export default {
-  name: 'List'
+  name: 'List',
+  components: {
+    Tabbar
+  }
 }
 </script>
 
