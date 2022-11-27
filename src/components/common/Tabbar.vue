@@ -63,6 +63,7 @@ export default {
   width: 100%;
   height: 1.7143rem;
   background-color: #fff;
+  z-index: 999;
   ul {
     display: flex;
     justify-content: space-around;
