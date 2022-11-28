@@ -24,12 +24,9 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  position: fixed;
-  top: 0px;
-  left: 0px;
   width: 100%;
   height: 1.6rem;
-  // z-index: -;
+  z-index: 999;
   background-color: #b0352f;
   .logo{
     width: 2.05rem;
@@ -65,6 +62,7 @@ export default {
     justify-content: center;
     svg{
       width: 0.8571rem;
+      height: 0.8571rem;
     }
   }
 }

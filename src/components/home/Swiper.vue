@@ -59,7 +59,6 @@ export default {
   width: 100%;
   height: 5rem;
   overflow: hidden;
-  margin-top: 3rem;
   position: relative;
   img{
     width: 100%;

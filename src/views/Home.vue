@@ -1,22 +1,36 @@
 <template>
-  <div>
-    <Header></Header>
-    <ly-tab
-      v-model="selectedId"
-      :items="items"
-      :options="options"
-    />
-    <section><Swiper></Swiper></section>
-    <Icons></Icons>
+  <div class="home">
+    <div class="home-headers">
+      <div class="headers-main">
+        <Header></Header>
+        <ly-tab
+          v-model="selectedId"
+          :items="items"
+          :options="options"
+        />
+      </div>
+    </div>
+    <section class="wrapper">
+      <div>
+        <Swiper></Swiper>
+        <Icons></Icons>
+        <Recommend></Recommend>
+        <Like></Like>
+      </div>
+    </section>
     <Tabbar></Tabbar>
   </div>
 </template>
 
 <script>
-import Tabbar from '@/components/common/Tabbar.vue'
 import Header from '@/components/home/header.vue'
 import Swiper from '@/components/home/Swiper.vue'
 import Icons from '@/components/home/Icons.vue'
+import Recommend from '@/components/home/Recommend.vue'
+import Like from '@/components/home/Like.vue'
+import Tabbar from '@/components/common/Tabbar.vue'
+//  引入scroll组件 (中间滑动)
+import BScroll from '@better-scroll/core'
 export default {
   name: 'Home',
   data () {
@@ -41,20 +55,44 @@ export default {
     }
   },
   components: {
-    Tabbar,
     Header,
     Swiper,
-    Icons
+    Icons,
+    Tabbar,
+    Recommend,
+    Like
+  },
+  mounted () {
+    let bs = new BScroll('.wrapper', { // eslint-disable-line no-unused-vars
+      movable: true,
+      zoom: true
+    })
   }
 }
 </script>
 
 <style lang="less" scoped>
-.ly-tab {
+.home{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  .home-headers{
+    width: 100%;
+    height: 3rem;
+    overflow: hidden;
+  }
+  .headers-main {
   position: fixed;
-  top:1.7143rem;
+  top:0;
   left: 0;
   width: 100%;
-  height: 1.4286rem;
+  z-index: 999;
+  }
+  section{
+    flex: 1;
+    overflow: hidden;
+  }
 }
 </style>

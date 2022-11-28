@@ -57,9 +57,9 @@ export default {
 
 <style lang="less" scoped>
 .tabbar{
-  position: fixed;
-  left: 0;
-  bottom: 0;
+  // position: fixed;
+  // left: 0;
+  // bottom: 0;
   width: 100%;
   height: 1.7143rem;
   background-color: #fff;
