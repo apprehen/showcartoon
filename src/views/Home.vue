@@ -10,7 +10,7 @@
         />
       </div>
     </div>
-    <section class="wrapper">
+    <section ref="wrapper">
       <div>
         <Swiper></Swiper>
         <Icons></Icons>
@@ -63,7 +63,7 @@ export default {
     Like
   },
   mounted () {
-    let bs = new BScroll('.wrapper', { // eslint-disable-line no-unused-vars
+    let bs = new BScroll(this.$refs.wrapper, { // eslint-disable-line no-unused-vars
       movable: true,
       zoom: true
     })
