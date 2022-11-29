@@ -1,12 +1,11 @@
 const path = require('path')
-const { config } = require('process')
 module.exports = {
   // 代理
   devServer: {
     proxy: {
       '/api': {
         target: 'http://localhost:3000',
-        changerOrigin: true,
+        changeOrigin: true,
         pathRewrite: {
           '^/api':'/api'
         }

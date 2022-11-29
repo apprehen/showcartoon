@@ -7,15 +7,18 @@
           v-model="selectedId"
           :items="items"
           :options="options"
+          @change="changeTab"
         />
       </div>
     </div>
     <section ref="wrapper">
       <div>
-        <Swiper></Swiper>
-        <Icons></Icons>
-        <Recommend></Recommend>
-        <Like></Like>
+        <Swiper v-if="true"></Swiper>
+        <Icons v-if="true"></Icons>
+        <Recommend v-if="true"></Recommend>
+        <Like v-if="true"></Like>
+        <Ad v-if="false"></Ad>
+        <!-- <Like></Like> -->
       </div>
     </section>
     <Tabbar></Tabbar>
@@ -23,14 +26,18 @@
 </template>
 
 <script>
+//  引入主页组件
 import Header from '@/components/home/header.vue'
 import Swiper from '@/components/home/Swiper.vue'
 import Icons from '@/components/home/Icons.vue'
 import Recommend from '@/components/home/Recommend.vue'
 import Like from '@/components/home/Like.vue'
 import Tabbar from '@/components/common/Tabbar.vue'
+// 引入不同tab的组件
+import Ad from '@/components/home/Ad.vue'
 //  引入scroll组件 (中间滑动)
 import BScroll from '@better-scroll/core'
+// import axios from 'axios'
 export default {
   name: 'Home',
   data () {
@@ -60,13 +67,27 @@ export default {
     Icons,
     Tabbar,
     Recommend,
-    Like
+    Like,
+    Ad
+  },
+  created () {
+    // axios({
+    //   url: 'http://localhost:3000/api/home',
+    //   method: 'GET'
+    // }).then(res => {
+    //   console.log(res)
+    // })
   },
   mounted () {
     let bs = new BScroll(this.$refs.wrapper, { // eslint-disable-line no-unused-vars
       movable: true,
       zoom: true
     })
+  },
+  methods: {
+    changeTab (item, index) {
+      console.log(item, index)
+    }
   }
 }
 </script>
