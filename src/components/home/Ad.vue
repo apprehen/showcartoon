@@ -9,7 +9,7 @@ export default {
   name: 'Ad',
   data () {
     return {
-      imgUrl: require('@/public/images/Other/1.jpg')
+      imgUrl: './images/Other/1.jpg'
     }
   }
 }

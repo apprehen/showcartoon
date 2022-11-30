@@ -27,19 +27,19 @@ export default {
           id: 1,
           title: '兔兔娘',
           content: 'FF14性感兔娘',
-          imgUrl: require('@/public/images/Likes/1.jpg')
+          imgUrl: './images/Likes/1.jpg'
         },
         {
           id: 2,
           title: '丽贝卡',
           content: '亚当重锤',
-          imgUrl: require('@/public/images/Likes/2.jpg')
+          imgUrl: './images/Likes/2.jpg'
         },
         {
           id: 3,
           title: 'Miku',
           content: 'fufu可爱捏',
-          imgUrl: require('@/public/images/Likes/3.jpg')
+          imgUrl: './images/Likes/3.jpg'
         }
       ]
     }

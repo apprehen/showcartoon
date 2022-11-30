@@ -33,42 +33,42 @@ export default {
           name: 'Megumi',
           content: 'Explosion',
           age: 18,
-          imgUrl: require('@/public/images/Recommend/3.jpg')
+          imgUrl: './images/Recommend/3.jpg'
         },
         {
           id: 2,
           name: '铃',
           content: 'Explosion',
           age: 18,
-          imgUrl: require('@/public/images/Recommend/4.jpg')
+          imgUrl: './images/Recommend/4.jpg'
         },
         {
           id: 3,
           name: 'Megumi',
           content: 'Explosion',
           age: 18,
-          imgUrl: require('@/public/images/Recommend/5.jpg')
+          imgUrl: './images/Recommend/5.jpg'
         },
         {
           id: 4,
           name: 'Megumi',
           content: 'Explosion',
           age: 18,
-          imgUrl: require('@/public/images/Recommend/6.jpg')
+          imgUrl: './images/Recommend/6.jpg'
         },
         {
           id: 5,
           name: 'Megumi',
           content: 'Explosion',
           age: 18,
-          imgUrl: require('@/public/images/Recommend/7.jpg')
+          imgUrl: './images/Recommend/7.jpg'
         },
         {
           id: 6,
           name: 'Megumi',
           content: 'Explosion',
           age: 18,
-          imgUrl: require('@/public/images/Recommend/8.jpg')
+          imgUrl: './images/Recommend/8.jpg'
         }
       ]
     }

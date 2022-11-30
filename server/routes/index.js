@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* GET home page.*/
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
@@ -29,19 +29,19 @@ router.get('/api/index_list/0/data/1',(req,res)=>{
           data: [
             {
               id: 1,
-              imgurl: ('../public/images')
+              imgurl: ('./images/Swiper/1.jpg')
             },
             {
               id: 2,
-              imgurl: ('../public/images/Swiper/2.jpg')
+              imgurl: ('./images/Swiper/2.jpg')
             },
             {
               id: 3,
-              imgurl: ('../public/images/Swiper/3.jpg')
+              imgurl: ('./images/Swiper/3.jpg')
             },
             {
               id: 4,
-              imgurl: ('../public/images/Swiper/4.jpg')
+              imgurl: ('./images/Swiper/4.jpg')
             }
           ]
         },
@@ -53,27 +53,27 @@ router.get('/api/index_list/0/data/1',(req,res)=>{
             {
               id: 1,
               title: '栗帽',
-              imgUrl: ('../public/images/Icons/1.png')
+              imgUrl: ('./images/Icons/1.png')
             },
             {
               id: 2,
               title: '不中嘞',
-              imgUrl: ('../public/images/Icons/2.jpg')
+              imgUrl: ('./images/Icons/2.jpg')
             },
             {
               id: 3,
               title: '寄寄子',
-              imgUrl: ('../public/images/Icons/3.jpg')
+              imgUrl: ('./images/Icons/3.jpg')
             },
             {
               id: 4,
               title: 'Komi桑',
-              imgUrl: ('../public/images/Icons/4.jpg')
+              imgUrl: ('./images/Icons/4.jpg')
             },
             {
               id: 5,
               title: '可爱捏',
-              imgUrl: ('../public/images/Icons/5.jpg')
+              imgUrl: ('./images/Icons/5.jpg')
             }
           ]
         },
@@ -87,42 +87,42 @@ router.get('/api/index_list/0/data/1',(req,res)=>{
               name: 'Megumi',
               content: 'Explosion',
               age: 18,
-              imgUrl: ('../public/images/Recommend/3.jpg')
+              imgUrl: ('./images/Recommend/3.jpg')
             },
             {
               id: 2,
               name: '铃',
               content: 'Explosion',
               age: 18,
-              imgUrl: ('../public/images/Recommend/4.jpg')
+              imgUrl: ('./images/Recommend/4.jpg')
             },
             {
               id: 3,
               name: 'Megumi',
               content: 'Explosion',
               age: 18,
-              imgUrl: ('../public/images/Recommend/5.jpg')
+              imgUrl: ('./images/Recommend/5.jpg')
             },
             {
               id: 4,
               name: 'Megumi',
               content: 'Explosion',
               age: 18,
-              imgUrl: ('../public/images/Recommend/6.jpg')
+              imgUrl: ('./images/Recommend/6.jpg')
             },
             {
               id: 5,
               name: 'Megumi',
               content: 'Explosion',
               age: 18,
-              imgUrl: ('../public/images/Recommend/7.jpg')
+              imgUrl: ('./images/Recommend/7.jpg')
             },
             {
               id: 6,
               name: 'Megumi',
               content: 'Explosion',
               age: 18,
-              imgUrl: ('../public/images/Recommend/8.jpg')
+              imgUrl: ('./images/Recommend/8.jpg')
             }
           ]
         },
@@ -135,19 +135,19 @@ router.get('/api/index_list/0/data/1',(req,res)=>{
               id: 1,
               title: '兔兔娘',
               content: 'FF14性感兔娘',
-              imgUrl: ('../public/images/Likes/1.jpg')
+              imgUrl: ('./images/Likes/1.jpg')
             },
             {
               id: 2,
               title: '丽贝卡',
               content: '亚当重锤',
-              imgUrl: ('../public/images/Likes/2.jpg')
+              imgUrl: ('./images/Likes/2.jpg')
             },
             {
               id: 3,
               title: 'Miku',
               content: 'fufu可爱捏',
-              imgUrl: ('../public/images/Likes/3.jpg')
+              imgUrl: ('./images/Likes/3.jpg')
             }
           ]
         }

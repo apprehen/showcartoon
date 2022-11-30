@@ -21,26 +21,26 @@ export default {
         {
           title: '首页',
           path: '/home',
-          active: require('@/public/images/Tabbar/home.png'),
-          selected: require('@/public/images/Tabbar/home-active.png')
+          active: './images/Tabbar/home.png',
+          selected: './images/Tabbar/home-active.png'
         },
         {
           title: '分类',
           path: '/list',
-          active: require('@/public/images/Tabbar/list.png'),
-          selected: require('@/public/images/Tabbar/list-active.png')
+          active: './images/Tabbar/list.png',
+          selected: './images/Tabbar/list-active.png'
         },
         {
           title: '购物',
           path: '/cart',
-          active: require('@/public/images/Tabbar/cart.png'),
-          selected: require('@/public/images/Tabbar/cart-active.png')
+          active: './images/Tabbar/cart.png',
+          selected: './images/Tabbar/cart-active.png'
         },
         {
           title: '我的',
           path: '/my',
-          active: require('@/public/images/Tabbar/my.png'),
-          selected: require('@/public/images/Tabbar/my-active.png')
+          active: './images/Tabbar/my.png',
+          selected: './images/Tabbar/my-active.png'
         }
       ]
     }
