@@ -13,12 +13,19 @@
     </div>
     <section ref="wrapper">
       <div>
-        <Swiper v-if="true"></Swiper>
-        <Icons v-if="true"></Icons>
-        <Recommend v-if="true"></Recommend>
-        <Like v-if="true"></Like>
-        <Ad v-if="false"></Ad>
-        <!-- <Like></Like> -->
+        <div v-for="(item,index) in newData"
+        :key="index"
+        >
+        <!-- {{item}} -->
+          <Swiper
+          v-if="item.type == 'SwiperList'"
+          :swiperList="item.data"
+          ></Swiper>
+          <Icons v-if="item.type == 'IconsList'"></Icons>
+          <Recommend v-if="item.type == 'RecommendList'"></Recommend>
+          <Ad v-if="item.type == 'AdList'"></Ad>
+          <Like v-if="item.type == 'LikeList'"></Like>
+        </div>
       </div>
     </section>
     <Tabbar></Tabbar>
@@ -37,23 +44,15 @@ import Tabbar from '@/components/common/Tabbar.vue'
 import Ad from '@/components/home/Ad.vue'
 //  引入scroll组件 (中间滑动)
 import BScroll from '@better-scroll/core'
-// import axios from 'axios'
+import axios from 'axios'
 export default {
   name: 'Home',
   data () {
     return {
       names: 'wife',
       selectedId: 0,
-      items: [
-        {label: 'Megumi'},
-        {label: 'Komi'},
-        {label: 'toka'},
-        {label: 'kurumi'},
-        {label: 'Miku'},
-        {label: '七罪'},
-        {label: '祈妹'},
-        {label: 'saber'}
-      ],
+      items: [],
+      newData: [],
       options: {
         activeColor: '#f00',
         reBoundExponent: 100,
@@ -71,12 +70,7 @@ export default {
     Ad
   },
   created () {
-    // axios({
-    //   url: 'http://localhost:3000/api/home',
-    //   method: 'GET'
-    // }).then(res => {
-    //   console.log(res)
-    // })
+    this.getData()
   },
   mounted () {
     let bs = new BScroll(this.$refs.wrapper, { // eslint-disable-line no-unused-vars
@@ -87,6 +81,20 @@ export default {
   methods: {
     changeTab (item, index) {
       console.log(item, index)
+    },
+    async getData () {
+      let res = await axios({
+        method: 'GET',
+        baseURL: 'http://localhost:3000',
+        url: 'api/index_list/0/data/1',
+        headers: {'Content-type': 'application/json'}
+      })
+      //  性能优化
+      this.items = Object.freeze(res.data.data.topBar)
+      // console.log(res.data.data.topBar)
+      this.newData = Object.freeze(res.data.data.data)
+      // console.log(res.data.data.data)
+      // console.log(this.newData)
     }
   }
 }

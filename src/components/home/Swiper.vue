@@ -14,6 +14,9 @@ import 'Swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
   name: 'Swiper',
+  props: {
+    swiperList: Array
+  },
   components: {
     swiper,
     swiperSlide
@@ -27,26 +30,11 @@ export default {
           el: '.swiper-pagination',
           clickable: true
         }
-      },
-      swiperList: [
-        {
-          id: 1,
-          imgurl: require('@/public/images/Swiper/1.jpg')
-        },
-        {
-          id: 2,
-          imgurl: require('@/public/images/Swiper/2.jpg')
-        },
-        {
-          id: 3,
-          imgurl: require('@/public/images/Swiper/3.jpg')
-        },
-        {
-          id: 4,
-          imgurl: require('@/public/images/Swiper/4.jpg')
-        }
-      ]
+      }
     }
+  },
+  mounted () {
+    // console.log(this.sw)
   }
 }
 </script>
