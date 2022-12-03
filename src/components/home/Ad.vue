@@ -1,16 +1,19 @@
 <template>
   <div class="ad">
-    <img :src="this.imgUrl">
+    <li v-for="(item,index) in adList" :key="index">
+      <img :src="item.imgUrl">
+    </li>
+    <!-- <img :src="this.imgUrl"> -->
   </div>
 </template>
 
 <script>
 export default {
   name: 'Ad',
-  data () {
-    return {
-      imgUrl: './images/Other/1.jpg'
-    }
+  props: {
+    adList: Array
+  },
+  mounted () {
   }
 }
 </script>

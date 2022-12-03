@@ -16,19 +16,31 @@
         <div v-for="(item,index) in newData"
         :key="index"
         >
-        <!-- {{item}} -->
           <Swiper
           v-if="item.type == 'SwiperList'"
           :swiperList="item.data"
           ></Swiper>
-          <Icons v-if="item.type == 'IconsList'"></Icons>
-          <Recommend v-if="item.type == 'RecommendList'"></Recommend>
-          <Ad v-if="item.type == 'AdList'"></Ad>
-          <Like v-if="item.type == 'LikeList'"></Like>
+          <Icons
+          v-if="item.type == 'IconsList'"
+          :iconsList="item.data"
+          ></Icons>
+          <Recommend
+          v-if="item.type == 'RecommendList'"
+          :recommendList="item.data"
+          ></Recommend>
+          <Ad
+          v-if="item.type == 'AdList'"
+          :adList="item.data"
+          ></Ad>
+          <Like
+          v-if="item.type == 'LikeList'"
+          :likeList="item.data"
+          ></Like>
         </div>
       </div>
     </section>
     <Tabbar></Tabbar>
+    <!-- <img src="./images/Swiper/1.jpg" alt=""> -->
   </div>
 </template>
 
@@ -81,6 +93,7 @@ export default {
   methods: {
     changeTab (item, index) {
       console.log(item, index)
+      this.addData(index)
     },
     async getData () {
       let res = await axios({
@@ -91,10 +104,21 @@ export default {
       })
       //  性能优化
       this.items = Object.freeze(res.data.data.topBar)
-      // console.log(res.data.data.topBar)
       this.newData = Object.freeze(res.data.data.data)
-      // console.log(res.data.data.data)
-      // console.log(this.newData)
+    },
+    async addData (index) {
+      let res = await axios({
+        method: 'GET',
+        baseURL: 'http://localhost:3000',
+        url: `api/index_list/${index}/data/1`,
+        headers: {'Content-type': 'application/json'}
+      })
+      // console.log(res.data.data)
+      if (res.data.data.constructor !== Array) {
+        this.newData = res.data.data.data
+      } else {
+        this.newData = res.data.data
+      }
     }
   }
 }

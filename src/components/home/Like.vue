@@ -4,7 +4,7 @@
       <span>猜你喜欢</span>
     </Card>
     <ul>
-      <li v-for="(item,index) in LikeList" :key="index">
+      <li v-for="(item,index) in likeList" :key="index">
         <img :src="item.imgUrl">
         <h1 class="like-title">{{item.title}}</h1>
         <div class="like-detail">{{item.content}}</div>
@@ -20,28 +20,11 @@ export default {
   components: {
     Card
   },
+  props: {
+    likeList: Array
+  },
   data () {
     return {
-      LikeList: [
-        {
-          id: 1,
-          title: '兔兔娘',
-          content: 'FF14性感兔娘',
-          imgUrl: './images/Likes/1.jpg'
-        },
-        {
-          id: 2,
-          title: '丽贝卡',
-          content: '亚当重锤',
-          imgUrl: './images/Likes/2.jpg'
-        },
-        {
-          id: 3,
-          title: 'Miku',
-          content: 'fufu可爱捏',
-          imgUrl: './images/Likes/3.jpg'
-        }
-      ]
     }
   }
 }

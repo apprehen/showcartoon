@@ -6,8 +6,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+// 这是首页推荐的数据
 // 返回数据是 0--->代表第0个tab的数据   1-----> 代表的第一屏
-router.get('/api/index_list/0/data/1',(req,res)=>{
+router.get('/api/index_list/0/data/1',(req,res,next)=>{
   res.send({
     code:0,
     data: {
@@ -29,19 +30,19 @@ router.get('/api/index_list/0/data/1',(req,res)=>{
           data: [
             {
               id: 1,
-              imgurl: ('./images/Swiper/1.jpg')
+              imgurl: 'static/images/Swiper/1.jpg'
             },
             {
               id: 2,
-              imgurl: ('./images/Swiper/2.jpg')
+              imgurl: ('static/images/Swiper/2.jpg')
             },
             {
               id: 3,
-              imgurl: ('./images/Swiper/3.jpg')
+              imgurl: ('static/images/Swiper/3.jpg')
             },
             {
               id: 4,
-              imgurl: ('./images/Swiper/4.jpg')
+              imgurl: ('static/images/Swiper/4.jpg')
             }
           ]
         },
@@ -53,27 +54,27 @@ router.get('/api/index_list/0/data/1',(req,res)=>{
             {
               id: 1,
               title: '栗帽',
-              imgUrl: ('./images/Icons/1.png')
+              imgUrl: ('static/images/Icons/1.png')
             },
             {
               id: 2,
               title: '不中嘞',
-              imgUrl: ('./images/Icons/2.jpg')
+              imgUrl: ('static/images/Icons/2.jpg')
             },
             {
               id: 3,
               title: '寄寄子',
-              imgUrl: ('./images/Icons/3.jpg')
+              imgUrl: ('static/images/Icons/3.jpg')
             },
             {
               id: 4,
               title: 'Komi桑',
-              imgUrl: ('./images/Icons/4.jpg')
+              imgUrl: ('static/images/Icons/4.jpg')
             },
             {
               id: 5,
               title: '可爱捏',
-              imgUrl: ('./images/Icons/5.jpg')
+              imgUrl: ('static/images/Icons/5.jpg')
             }
           ]
         },
@@ -87,42 +88,42 @@ router.get('/api/index_list/0/data/1',(req,res)=>{
               name: 'Megumi',
               content: 'Explosion',
               age: 18,
-              imgUrl: ('./images/Recommend/3.jpg')
+              imgUrl: ('static/images/Recommend/3.jpg')
             },
             {
               id: 2,
               name: '铃',
               content: 'Explosion',
               age: 18,
-              imgUrl: ('./images/Recommend/4.jpg')
+              imgUrl: ('static/images/Recommend/4.jpg')
             },
             {
               id: 3,
               name: 'Megumi',
               content: 'Explosion',
               age: 18,
-              imgUrl: ('./images/Recommend/5.jpg')
+              imgUrl: ('static/images/Recommend/5.jpg')
             },
             {
               id: 4,
               name: 'Megumi',
               content: 'Explosion',
               age: 18,
-              imgUrl: ('./images/Recommend/6.jpg')
+              imgUrl: ('static/images/Recommend/6.jpg')
             },
             {
               id: 5,
               name: 'Megumi',
               content: 'Explosion',
               age: 18,
-              imgUrl: ('./images/Recommend/7.jpg')
+              imgUrl: ('static/images/Recommend/7.jpg')
             },
             {
               id: 6,
               name: 'Megumi',
               content: 'Explosion',
               age: 18,
-              imgUrl: ('./images/Recommend/8.jpg')
+              imgUrl: ('static/images/Recommend/8.jpg')
             }
           ]
         },
@@ -135,19 +136,19 @@ router.get('/api/index_list/0/data/1',(req,res)=>{
               id: 1,
               title: '兔兔娘',
               content: 'FF14性感兔娘',
-              imgUrl: ('./images/Likes/1.jpg')
+              imgUrl: ('static/images/Likes/1.jpg')
             },
             {
               id: 2,
               title: '丽贝卡',
               content: '亚当重锤',
-              imgUrl: ('./images/Likes/2.jpg')
+              imgUrl: ('static/images/Likes/2.jpg')
             },
             {
               id: 3,
               title: 'Miku',
               content: 'fufu可爱捏',
-              imgUrl: ('./images/Likes/3.jpg')
+              imgUrl: ('static/images/Likes/3.jpg')
             }
           ]
         }
@@ -155,5 +156,151 @@ router.get('/api/index_list/0/data/1',(req,res)=>{
     }
   })
 })
+// 这是第一个tab Komi的数据
+router.get('/api/index_list/1/data/1',(req,res,next)=>{
+  res.send({
+    code:1,
+    data: [
+      // adList
+      // 广告
+      {
+        id:1,
+        type: 'AdList',
+        data: [
+          {
+            id:1,
+            imgUrl: 'static/images/Other/1.jpg'
+          },
+          {
+            id:2,
+            imgUrl: 'static/images/Other/2.jpg'
+          }
+        ]
+      },
+      // 猜你喜欢
+      {
+        id:2,
+        type:'LikeList',
+        data: [
+          {
+            id: 1,
+            title: '兔兔娘',
+            content: 'FF14性感兔娘',
+            imgUrl: ('static/images/Likes/4.jpg')
+          },
+          {
+            id: 2,
+            title: '丽贝卡',
+            content: '亚当重锤',
+            imgUrl: ('static/images/Likes/5.jpg')
+          },
+          {
+            id: 3,
+            title: 'Miku',
+            content: 'fufu可爱捏',
+            imgUrl: ('static/images/Likes/6.jpg')
+          }
+        ]
+      }
+    ]
+  })
+})
 
+// 这是第二个tab toka的数据
+router.get('/api/index_list/2/data/1',(req,res,next)=>{
+  res.send({
+    code: 2,
+    data: [
+      // 广告 AdList
+      {
+        id:1,
+        type: 'AdList',
+        data: [
+          {
+            id:1,
+            imgUrl: 'static/images/Other/3.jpg'
+          },
+          {
+            id:2,
+            imgUrl: 'static/images/Other/4.jpg'
+          }
+        ]
+      },
+      // 喜欢列表 like
+      {
+        id:2,
+        type:'LikeList',
+        data: [
+          {
+            id: 1,
+            title: '兔兔娘',
+            content: 'FF14性感兔娘',
+            imgUrl: ('static/images/Likes/7.jpg')
+          },
+          {
+            id: 2,
+            title: '丽贝卡',
+            content: '亚当重锤',
+            imgUrl: ('static/images/Likes/8.jpg')
+          },
+          {
+            id: 3,
+            title: 'Miku',
+            content: 'fufu可爱捏',
+            imgUrl: ('static/images/Likes/9.jpg')
+          }
+        ]
+      }
+    ]
+  })
+})
+
+// 这是第三个tab kurumi的数据
+router.get('/api/index_list/3/data/1',(req,res,next)=>{
+  res.send({
+    code: 2,
+    data: [
+      // 广告 AdList
+      {
+        id:1,
+        type: 'AdList',
+        data: [
+          {
+            id:1,
+            imgUrl: 'static/images/Other/5.jpg'
+          },
+          {
+            id:2,
+            imgUrl: 'static/images/Other/6.jpg'
+          }
+        ]
+      },
+      // 喜欢列表 like
+      {
+        id:2,
+        type:'LikeList',
+        data: [
+          {
+            id: 1,
+            title: '兔兔娘',
+            content: 'FF14性感兔娘',
+            imgUrl: ('static/images/Likes/10.jpg')
+          },
+          {
+            id: 2,
+            title: '丽贝卡',
+            content: '亚当重锤',
+            imgUrl: ('static/images/Likes/11.jpg')
+          },
+          {
+            id: 3,
+            title: 'Miku',
+            content: 'fufu可爱捏',
+            imgUrl: ('static/images/Likes/12.jpg')
+          }
+        ]
+      }
+    ]
+  })
+})
 module.exports = router;
