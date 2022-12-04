@@ -21,9 +21,17 @@ export default {
 <style lang="less" scoped>
 .ad{
   width: 100%;
-  height: 6.0571rem;
+  height: fit-content;
+  overflow: hidden;
+  height: fit-content;
+  block-size: fit-content;
+  li{
+    // height: 5.7143rem;
+  }
   img{
+    // height: fit-content;
     width: 100%;
+
   }
 }
 </style>

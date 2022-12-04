@@ -11,7 +11,7 @@
         />
       </div>
     </div>
-    <section ref="wrapper">
+    <section ref="wrapper" class="wrapper">
       <div>
         <div v-for="(item,index) in newData"
         :key="index"
@@ -85,10 +85,17 @@ export default {
     this.getData()
   },
   mounted () {
-    let bs = new BScroll(this.$refs.wrapper, { // eslint-disable-line no-unused-vars
-      movable: true,
-      zoom: true
-    })
+    // 当dom更新完在加载完就能计算正确
+    // let bs = new BScroll(this.$refs.wrapper, { // eslint-disable-line no-unused-vars
+    //   movable: true,
+    //   zoom: true
+    // })
+    // this.$nextTick(() => {
+    //   let bs = new BScroll(this.$refs.wrapper, { // eslint-disable-line no-unused-vars
+    //     movable: true,
+    //     zoom: true
+    //   })
+    // })
   },
   methods: {
     changeTab (item, index) {
@@ -105,6 +112,7 @@ export default {
       //  性能优化
       this.items = Object.freeze(res.data.data.topBar)
       this.newData = Object.freeze(res.data.data.data)
+      this.getheight()
     },
     async addData (index) {
       let res = await axios({
@@ -119,6 +127,15 @@ export default {
       } else {
         this.newData = res.data.data
       }
+      this.getheight()
+    },
+    getheight () {
+      this.$nextTick(() => {
+        let bs = new BScroll(this.$refs.wrapper, { // eslint-disable-line no-unused-vars
+          movable: true,
+          zoom: true
+        })
+      })
     }
   }
 }
@@ -147,5 +164,8 @@ export default {
     flex: 1;
     overflow: hidden;
   }
+}
+.wrapper{
+  position: relative;
 }
 </style>

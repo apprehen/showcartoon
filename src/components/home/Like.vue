@@ -35,6 +35,7 @@ export default {
   ul{
     display: flex;
     flex-wrap: wrap;
+    height: fit-content;
     li{
       display: flex;
       flex-direction: column;
@@ -43,9 +44,11 @@ export default {
       width: 50%;
       align-items: center;
       margin-bottom: 0.5714rem;
+      height: fit-content;
       img{
-        height: 11rem;
-        width: 4.693rem;
+        height: 8.1429rem;
+        // width: 95%;
+        // width: 4.693rem;
         border-radius: 0.2857rem;
       }
       .like-title{
