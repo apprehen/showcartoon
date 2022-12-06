@@ -44,7 +44,8 @@ export default {
       width: 50%;
       align-items: center;
       margin-bottom: 0.5714rem;
-      height: fit-content;
+      height: auto;
+      height: 8.5429;
       img{
         height: 8.1429rem;
         // width: 95%;

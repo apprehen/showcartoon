@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
 Vue.use(Router)
-
 export default new Router({
   routes: [
     {
@@ -36,6 +34,20 @@ export default new Router({
     {
       name: 'Search',
       path: '/search',
+      children: [
+        {
+          name: 'index',
+          path: '/',
+          component: () =>
+            import('@/views/search/Searchindex.vue')
+        },
+        {
+          name: 'list',
+          path: 'list',
+          component: () =>
+            import('@/views/search/Searchlist.vue')
+        }
+      ],
       component: () =>
         import('@/views/Search.vue')
     }

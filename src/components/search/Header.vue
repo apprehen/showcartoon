@@ -7,11 +7,13 @@
     <!-- 中间 -->
     <div class="header-main">
       <svg t="1670081873255" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5111" width="200" height="200"><path d="M797.525333 752.266667c62.069333-72.736 97.28-165.002667 97.28-262.186667C894.816 266.528 713.621333 85.333333 490.08 85.333333 266.538667 85.333333 85.333333 266.538667 85.333333 490.069333 85.333333 713.610667 266.538667 894.826667 490.069333 894.826667a404.693333 404.693333 0 0 0 118.208-17.546667 32 32 0 0 0-18.666666-61.216 340.693333 340.693333 0 0 1-99.541334 14.762667C301.888 830.816 149.333333 678.261333 149.333333 490.069333 149.333333 301.888 301.888 149.333333 490.069333 149.333333 678.261333 149.333333 830.826667 301.888 830.826667 490.069333c0 89.28-35.381333 173.696-97.141334 237.322667a36.992 36.992 0 0 0 0.384 51.925333l149.973334 149.973334a32 32 0 0 0 45.258666-45.248L797.525333 752.266667z" p-id="5112"></path></svg>
-      <form action="" onsubmit="return false">
-        <input type="search" placeholder="搜索你喜欢的产品...">
+      <form action="" onsubmit="return false" @keyup.enter="goSearchList">
+        <input type="search" placeholder="搜索你喜欢的产品..."
+        v-model="searchVal"
+        >
       </form>
     </div>
-    <div class="header-btn">
+    <div class="header-btn" @click="goSearchList">
       搜索
     </div>
   </div>
@@ -20,9 +22,45 @@
 <script>
 export default {
   name: 'Header',
+  data () {
+    return {
+      searchVal: this.$route.query.key || '',
+      searchArr: []
+    }
+  },
   methods: {
     goBack () {
       this.$router.back()
+    },
+    goSearchList () {
+      // this.$router.push({
+      //   name: 'list'
+      // })
+      if (this.searchVal.trim() === '') {
+        // eslint-disable-next-line
+        return;
+      }
+      if (!localStorage.getItem('searchList')) {
+        localStorage.setItem('searchList', '[]')
+      } else {
+        this.searchArr = JSON.parse(localStorage.getItem('searchList'))
+      }
+      // 增加数据
+      this.searchArr.unshift(this.searchVal.trim())
+      // ES6去重
+      let newArr = new Set(this.searchArr)
+      localStorage.setItem('searchList', JSON.stringify(Array.from(newArr)))
+      if (this.searchVal.trim() === this.$route.query.key) {
+        // eslint-disable-next-line
+        return;
+      } else {
+        this.$router.push({
+          name: 'list',
+          query: {
+            key: this.searchVal.trim()
+          }
+        })
+      }
     }
   }
 }
@@ -58,9 +96,6 @@ export default {
       height: 0.6rem;
       width: 0.6rem;
       margin-right: 0.5rem;
-      path{
-        // fill: #fff;
-      }
     }
     form{
       display: flex;

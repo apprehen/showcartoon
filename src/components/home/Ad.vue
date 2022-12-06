@@ -26,7 +26,7 @@ export default {
   height: fit-content;
   block-size: fit-content;
   li{
-    // height: 5.7143rem;
+    height: 5.7143rem;
   }
   img{
     // height: fit-content;

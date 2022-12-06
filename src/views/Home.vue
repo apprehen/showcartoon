@@ -83,6 +83,7 @@ export default {
   },
   created () {
     this.getData()
+    // this.addData(0)
   },
   mounted () {
     // 当dom更新完在加载完就能计算正确
@@ -98,8 +99,15 @@ export default {
     // })
   },
   methods: {
+    getheight () {
+      this.$nextTick(() => {
+        let bs = new BScroll(this.$refs.wrapper, { // eslint-disable-line no-unused-vars
+          movable: true,
+          zoom: true
+        })
+      })
+    },
     changeTab (item, index) {
-      console.log(item, index)
       this.addData(index)
     },
     async getData () {
@@ -128,14 +136,6 @@ export default {
         this.newData = res.data.data
       }
       this.getheight()
-    },
-    getheight () {
-      this.$nextTick(() => {
-        let bs = new BScroll(this.$refs.wrapper, { // eslint-disable-line no-unused-vars
-          movable: true,
-          zoom: true
-        })
-      })
     }
   }
 }
@@ -148,6 +148,7 @@ export default {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  touch-action: none;
   .home-headers{
     width: 100%;
     height: 3rem;
@@ -163,9 +164,13 @@ export default {
   section{
     flex: 1;
     overflow: hidden;
+    position: relative;
+    touch-action: none;
+    height: fit-content;
   }
 }
 .wrapper{
   position: relative;
+  touch-action: none;
 }
 </style>
