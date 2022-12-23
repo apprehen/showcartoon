@@ -56,7 +56,7 @@ import Tabbar from '@/components/common/Tabbar.vue'
 import Ad from '@/components/home/Ad.vue'
 //  引入scroll组件 (中间滑动)
 import BScroll from '@better-scroll/core'
-import axios from 'axios'
+import http from '@/common/api/request.js'
 export default {
   name: 'Home',
   data () {
@@ -86,17 +86,6 @@ export default {
     // this.addData(0)
   },
   mounted () {
-    // 当dom更新完在加载完就能计算正确
-    // let bs = new BScroll(this.$refs.wrapper, { // eslint-disable-line no-unused-vars
-    //   movable: true,
-    //   zoom: true
-    // })
-    // this.$nextTick(() => {
-    //   let bs = new BScroll(this.$refs.wrapper, { // eslint-disable-line no-unused-vars
-    //     movable: true,
-    //     zoom: true
-    //   })
-    // })
   },
   methods: {
     getheight () {
@@ -111,29 +100,25 @@ export default {
       this.addData(index)
     },
     async getData () {
-      let res = await axios({
-        method: 'GET',
+      let res = await http.$axios({
         baseURL: 'http://localhost:3000',
-        url: 'api/index_list/0/data/1',
-        headers: {'Content-type': 'application/json'}
+        url: 'api/index_list/0/data/1'
       })
       //  性能优化
-      this.items = Object.freeze(res.data.data.topBar)
-      this.newData = Object.freeze(res.data.data.data)
+      this.items = Object.freeze(res.topBar)
+      this.newData = Object.freeze(res.data)
       this.getheight()
     },
     async addData (index) {
-      let res = await axios({
-        method: 'GET',
+      let res = await http.$axios({
         baseURL: 'http://localhost:3000',
-        url: `api/index_list/${index}/data/1`,
-        headers: {'Content-type': 'application/json'}
+        url: `api/index_list/${index}/data/1`
       })
       // console.log(res.data.data)
-      if (res.data.data.constructor !== Array) {
-        this.newData = res.data.data.data
+      if (res.constructor !== Array) {
+        this.newData = res.data
       } else {
-        this.newData = res.data.data
+        this.newData = res
       }
       this.getheight()
     }

@@ -3,65 +3,23 @@
     <div class="headers">
       <Header></Header>
       <ul>
-        <li>综合</li>
-        <li>
-          <div>价格</div>
-          <svg t="1670296434493" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1946" width="16" height="16"><path d="M512.03799 0 921.675981 411.648 102.4 411.648 512.03799 0ZM512.03799 995.328 102.4 583.68 921.675981 583.68 512.03799 995.328Z" p-id="1947" fill="#2c2c2c"></path></svg>
-        </li>
-        <li>
-          <div>销量</div>
-          <svg t="1670296434493" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1946" width="16" height="16"><path d="M512.03799 0 921.675981 411.648 102.4 411.648 512.03799 0ZM512.03799 995.328 102.4 583.68 921.675981 583.68 512.03799 995.328Z" p-id="1947" fill="#2c2c2c"></path></svg>
+        <li v-for="(item,index) in searchList.data" :key="index" @click="changeTab(index)">
+          <div :class="searchList.currentIndex === index?'active':''">{{item.name}}</div>
+          <div class="arrowicon" v-if="index != 0">
+            <svg t="1671815830471" class="icon" :class="item.status == 1?'active':''"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2663" width="16" height="16"><path d="M573.056 272l308.8 404.608A76.8 76.8 0 0 1 820.736 800H203.232a76.8 76.8 0 0 1-61.056-123.392L450.976 272a76.8 76.8 0 0 1 122.08 0z" fill="#000000" p-id="2664"></path></svg>
+            <svg t="1671815885252" class="icon" :class="item.status == 2?'active':''" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3678" width="16" height="16"><path d="M573.056 752l308.8-404.608A76.8 76.8 0 0 0 820.736 224H203.232a76.8 76.8 0 0 0-61.056 123.392l308.8 404.608a76.8 76.8 0 0 0 122.08 0z" fill="#000000" p-id="3679"></path></svg>
+          </div>
         </li>
       </ul>
     </div>
     <section>
       <ul>
-        <li>
-          <img src="static/images/Goods/1.jpg">
-          <h3>黑甚于黑 暗之漆黑,渴求融合我之真红吧,觉醒之时已然来临,真理坠入无缪境界,化为无形扭曲 显现吧,Explosion!!</h3>
+        <li v-for="(item,index) in goodList" :key="index">
+          <img :src="item.imgUrl">
+          <h3>{{item.name}}</h3>
           <div class="price">
             <div>
-              <b>520</b>
-            </div>
-            <div>立即购买</div>
-          </div>
-        </li>
-        <li>
-          <img src="static/images/Goods/2.jpg">
-          <h3>黑甚于黑 暗之漆黑,渴求融合我之真红吧,觉醒之时已然来临,真理坠入无缪境界,化为无形扭曲 显现吧,Explosion!!</h3>
-          <div class="price">
-            <div>
-              <b>520</b>
-            </div>
-            <div>立即购买</div>
-          </div>
-        </li>
-        <li>
-          <img src="static/images/Goods/3.jpg">
-          <h3>黑甚于黑 暗之漆黑,渴求融合我之真红吧,觉醒之时已然来临,真理坠入无缪境界,化为无形扭曲 显现吧,Explosion!!</h3>
-          <div class="price">
-            <div>
-              <b>520</b>
-            </div>
-            <div>立即购买</div>
-          </div>
-        </li>
-        <li>
-          <img src="static/images/Goods/4.jpg">
-          <h3>黑甚于黑 暗之漆黑,渴求融合我之真红吧,觉醒之时已然来临,真理坠入无缪境界,化为无形扭曲 显现吧,Explosion!!</h3>
-          <div class="price">
-            <div>
-              <b>520</b>
-            </div>
-            <div>立即购买</div>
-          </div>
-        </li>
-        <li>
-          <img src="static/images/Goods/5.jpg">
-          <h3>黑甚于黑 暗之漆黑,渴求融合我之真红吧,觉醒之时已然来临,真理坠入无缪境界,化为无形扭曲 显现吧,Explosion!!</h3>
-          <div class="price">
-            <div>
-              <b>520</b>
+              <b>{{item.price}}</b>
             </div>
             <div>立即购买</div>
           </div>
@@ -75,11 +33,78 @@
 <script>
 import Header from '@/components/search/Header.vue'
 import Tabbar from '@/components/common/Tabbar.vue'
+import http from '@/common/api/request.js'
 export default {
   name: 'Searchlist',
+  data () {
+    return {
+      goodList: [],
+      searchList: {
+        currentIndex: 0,
+        /*
+          status:0 都不亮
+          status:1 上箭头亮
+          status:2 下箭头亮
+        */
+        data: [
+          {name: '综合'},
+          {name: '价格', status: 0, key: 'price'},
+          {name: '销量', status: 0, key: 'num'}
+        ]
+      }
+    }
+  },
   components: {
     Header,
     Tabbar
+  },
+  computed: {
+    orderBy () {
+      let obj = this.searchList.data[this.searchList.currentIndex]
+      let val = obj.status === 1 ? 'asc' : 'desc'
+      console.log(obj)
+      return {
+        type: obj.key,
+        ordermethod: val
+      }
+    }
+  },
+  created () {
+    this.getData()
+  },
+  methods: {
+    async getData () {
+      let res = await http.$axios({
+        baseURL: 'http://localhost:3000',
+        url: 'api/goods/shopList',
+        params: {
+          searchName: this.$route.query.key,
+          ...this.orderBy
+        }
+      })
+      // console.log(res)
+      this.goodList = res
+    },
+    changeTab (index) {
+      this.searchList.currentIndex = index
+      let item = this.searchList.data[index]
+      // 遍历
+      this.searchList.data.forEach((v, i) => {
+        if (i !== index) {
+          v.status = 0
+        }
+      })
+      // 改变排序
+      if (index === this.searchList.currentIndex) {
+        item.status = item.status === 1 ? 2 : 1
+      }
+      this.getData()
+    }
+  },
+  watch: {
+    $route () {
+      this.getData()
+    }
   }
 }
 </script>
@@ -100,8 +125,11 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        svg{
+        .arrowicon{
+          display: flex;
           margin-left: 0.1714rem;
+          flex-direction: column;
+          justify-content: center;
         }
       }
     }
@@ -162,6 +190,12 @@ export default {
         }
       }
     }
+  }
+}
+.active{
+  color: red;
+  path{
+    fill: red;
   }
 }
 </style>

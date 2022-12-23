@@ -1,10 +1,36 @@
 var express = require('express');
 var router = express.Router();
-
+const connectdb = require('../public/javascripts/connect.js')
 /* GET home page.*/
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
+// connectdb.content()
+// console.log(connectdb)
+// console.log(connectdb.query('SELECT * FROM PUBLIC.good_list'))
+// const res = await connectdb.query('SELECT * FROM PUBLIC.good_list')
+// console.log(res)
+// connectdb.query('SELECT * FROM PUBLIC.good_list',(err,res)=>{
+//   console.log(res)
+// })
+
+router.get('/api/goods/shopList',async (req,res,next)=>{
+  let searchName = req.query.searchName
+  let type = req.query.type
+  let ordermethod = req.query.ordermethod
+  console.log('有请求捏',searchName,type,ordermethod)
+  const result = await connectdb()
+  let results
+  if (type) {
+    results = await result.query(`SELECT * FROM PUBLIC.good_list where name like '%${searchName}%' order by ${type} ${ordermethod} `)
+  } else {
+    results = await result.query(`SELECT * FROM PUBLIC.good_list where name like '%${searchName}%'`)
+  }
+  res.send({
+    code:0,
+    data:results.rows
+  })
+})
 
 // 这是首页推荐的数据
 // 返回数据是 0--->代表第0个tab的数据   1-----> 代表的第一屏
@@ -156,6 +182,7 @@ router.get('/api/index_list/0/data/1',(req,res,next)=>{
     }
   })
 })
+
 // 这是第一个tab Komi的数据
 router.get('/api/index_list/1/data/1',(req,res,next)=>{
   res.send({

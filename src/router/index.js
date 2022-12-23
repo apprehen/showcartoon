@@ -50,6 +50,12 @@ export default new Router({
       ],
       component: () =>
         import('@/views/Search.vue')
+    },
+    {
+      name: 'My',
+      path: '/test',
+      component: () =>
+        import('@/views/test.vue')
     }
   ]
 })

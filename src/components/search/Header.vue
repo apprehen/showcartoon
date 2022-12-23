@@ -54,7 +54,7 @@ export default {
         // eslint-disable-next-line
         return;
       } else {
-        this.$router.push({
+        this.$router.replace({
           name: 'list',
           query: {
             key: this.searchVal.trim()
