@@ -5,7 +5,7 @@
     </Card>
     <ul>
       <li v-for="(item,index) in likeList" :key="index">
-        <img :src="item.imgUrl">
+        <img v-lazy="item.imgUrl">
         <h1 class="like-title">{{item.title}}</h1>
         <div class="like-detail">{{item.content}}</div>
       </li>

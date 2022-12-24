@@ -5,7 +5,7 @@
     </Card>
     <ul class="recommend-main">
       <li v-for="(item,index) in recommendList" :key="index">
-        <h2><img :src="item.imgUrl"></h2>
+        <h2><img v-lazy="item.imgUrl"></h2>
         <div class="recommend-showinfo">
           <h3>{{item.name}}</h3>
           <p>{{item.content}}</p>

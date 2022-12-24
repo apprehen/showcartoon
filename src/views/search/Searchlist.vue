@@ -2,7 +2,7 @@
   <div class="searchlist">
     <div class="headers">
       <Header></Header>
-      <ul>
+      <ul v-if="goodList.length">
         <li v-for="(item,index) in searchList.data" :key="index" @click="changeTab(index)">
           <div :class="searchList.currentIndex === index?'active':''">{{item.name}}</div>
           <div class="arrowicon" v-if="index != 0">
@@ -11,6 +11,7 @@
           </div>
         </li>
       </ul>
+      <h1 v-else>暂无数据...</h1>
     </div>
     <section>
       <ul>
@@ -116,6 +117,11 @@ export default {
   display: flex;
   flex-direction: column;
   .headers{
+    h1{
+      font-size: 28px;
+      margin-top: 0.2857rem;
+      margin-left: 0.5714rem;
+    }
     ul{
       display: flex;
       justify-content: space-around;

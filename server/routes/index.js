@@ -18,7 +18,6 @@ router.get('/api/goods/shopList',async (req,res,next)=>{
   let searchName = req.query.searchName
   let type = req.query.type
   let ordermethod = req.query.ordermethod
-  console.log('有请求捏',searchName,type,ordermethod)
   const result = await connectdb()
   let results
   if (type) {

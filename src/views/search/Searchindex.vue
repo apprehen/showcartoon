@@ -9,7 +9,7 @@
           <span class="search-clear" @click="deletehistory">清空历史记录</span>
         </h2>
         <ul>
-          <li v-for="(item,index) in searchArr" :key="index">{{item}}</li>
+          <li v-for="(item,index) in searchArr" :key="index" @click="goSearchList(item)">{{item}}</li>
         </ul>
       </div>
       <div v-else class="nonono">暂无搜索记录</div>
@@ -50,6 +50,14 @@ export default {
             this.searchArr = []
           }
         })
+    },
+    goSearchList (item) {
+      this.$router.push({
+        name: 'list',
+        query: {
+          key: item
+        }
+      })
     }
   }
 }
