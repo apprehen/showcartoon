@@ -6,13 +6,14 @@ export default {
   common: {
     method : 'GET',
     data: {},
-    params: {}
+    params: {},
+    baseURL: 'http://localhost:3000',
   },
   $axios (options = {}) {
     options.method = options.method || this.common.method
     options.data = options.data || this.common.data
     options.params = options.params || this.common.params
-
+    options.baseURL = options.baseURL || this.common.baseURL
     // 请求前显示加载中
     Indicator.open('加载中...')
     return axios(options).then(res => {

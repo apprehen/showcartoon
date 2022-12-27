@@ -20,12 +20,10 @@
     <section>
       <div class="list-l">
         <ul class="l-items">
-          <li class="active">推荐</li>
-          <li>推荐</li>
-          <li>推荐</li>
-          <li>推荐</li>
-          <li>推荐</li>
-          <li>推荐</li>
+          <li class="active"
+          v-for="(item,index) in leftData"
+          :key="index"
+          >{{ item.name}}</li>
         </ul>
       </div>
       <div class="list-r">
@@ -33,37 +31,15 @@
           <img src="@/assets/img/list/top.jpg" alt="suki">
           <div>SUKI!</div>
         </div>
-        <ul>
-          <li class="shop-list">
-            <h2>推荐</h2>
+        <ul v-for="(item,index) in rightData" :key="index">
+          <li
+          v-for="(k,i) in item" :key="i"
+          class="shop-list">
+            <h2>{{ k.name }}</h2>
             <ul class="r-content">
-              <li>
-                <img src="@/assets/img/list/suki.png">
-                <span>凉门</span>
-              </li>
-              <li>
-                <img src="@/assets/img/list/suki.png">
-                <span></span>
-              </li>
-              <li>
-                <img src="@/assets/img/list/suki.png">
-                <span></span>
-              </li>
-              <li>
-                <img src="@/assets/img/list/suki.png">
-                <span></span>
-              </li>
-              <li>
-                <img src="@/assets/img/list/suki.png">
-                <span></span>
-              </li>
-              <li>
-                <img src="@/assets/img/list/suki.png">
-                <span></span>
-              </li>
-              <li>
-                <img src="@/assets/img/list/suki.png">
-                <span></span>
+              <li v-for="(thriditem,thridindex) in k.list" :key="thridindex">
+                <img :src="thriditem.imgUrl">
+                <span>{{ thriditem.name }}</span>
               </li>
             </ul>
           </li>
@@ -76,10 +52,36 @@
 
 <script>
 import Tabbar from '../components/common/Tabbar.vue'
+import http from '@/common/api/request.js'
 export default {
   name: 'List',
+  data () {
+    return {
+      leftData: [],
+      rightData: []
+    }
+  },
   components: {
     Tabbar
+  },
+  async created () {
+    let res = await http.$axios({
+      url: '/api/list'
+    })
+    // console.log(res)
+    let leftArr = []
+    let rightArr = []
+    res.forEach(v => {
+      leftArr.push({
+        id: v.id,
+        name: v.name
+      })
+      rightArr.push(v.data)
+    })
+    // console.log(lefArr)
+    this.leftData = leftArr
+    this.rightData = rightArr
+    console.log(this.rightData)
   }
 }
 </script>
@@ -159,6 +161,7 @@ export default {
           width: 100%;
           line-height: 1.1rem;
           text-align: center;
+          margin-bottom: 0.2286rem;
           font-size: 0.437777rem;
         }
         .active{

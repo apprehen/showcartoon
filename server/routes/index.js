@@ -14,6 +14,266 @@ router.get('/', function(req, res, next) {
 //   console.log(res)
 // })
 
+// 返回分类页面的数据为三层数据捏
+router.get('/api/list',(req,res,next)=>{
+  res.send({
+    code:0,
+    data:[
+      {
+        // first
+        id:0,
+        name: '推荐',
+        data: [
+          {
+            // seconed
+            id:0,
+            name: '推荐',
+            list: [
+              {
+                //third
+                id:0,
+                name: '凉门',
+                imgUrl: 'static/images/list/suki.png'
+              },
+              {
+                //third
+                id:1,
+                name: '山田凉',
+                imgUrl: 'static/images/list/suki.png'
+              },
+              {
+                //third
+                id:2,
+                name: '屑凉',
+                imgUrl: 'static/images/list/suki.png'
+              },
+              {
+                //third
+                id:3,
+                name: '贝斯',
+                imgUrl: 'static/images/list/suki.png'
+              },
+              {
+                //third
+                id:4,
+                name: '蓝发',
+                imgUrl: 'static/images/list/suki.png'
+              },
+              {
+                //third
+                id:5,
+                name: 'SUKI',
+                imgUrl: 'static/images/list/suki.png'
+              } 
+            ]
+          }
+        ]
+      },
+      {
+        // first
+        id:1,
+        name: '虹夏',
+        data: [
+          {
+            // seconed
+            id:0,
+            name: '虹夏',
+            list: [
+              {
+                //third
+                id:0,
+                name: '虹门',
+                imgUrl: 'static/images/list/mama.jpg'
+              },
+              {
+                //third
+                id:1,
+                name: '下北泽の天使',
+                imgUrl: 'static/images/list/mama.jpg'
+              },
+              {
+                //third
+                id:2,
+                name: '小天使',
+                imgUrl: 'static/images/list/mama.jpg'
+              },
+              {
+                //third
+                id:3,
+                name: '架子鼓',
+                imgUrl: 'static/images/list/mama.jpg'
+              },
+              {
+                //third
+                id:4,
+                name: '黄发',
+                imgUrl: 'static/images/list/mama.jpg'
+              },
+              {
+                //third
+                id:5,
+                name: 'SUKI',
+                imgUrl: 'static/images/list/mama.jpg'
+              } 
+            ]
+          }
+        ]
+      },
+      {
+        // first
+        id:2,
+        name: '喜多',
+        data: [
+          {
+            // seconed
+            id:0,
+            name: '喜多',
+            list: [
+              {
+                //third
+                id:0,
+                name: '喜多！',
+                imgUrl: 'static/images/list/xiduoxiduo.jpg'
+              },
+              {
+                //third
+                id:1,
+                name: '下北泽の天使',
+                imgUrl: 'static/images/list/xiduoxiduo.jpg'
+              },
+              {
+                //third
+                id:2,
+                name: '小天使',
+                imgUrl: 'static/images/list/xiduoxiduo.jpg'
+              },
+              {
+                //third
+                id:3,
+                name: '主唱',
+                imgUrl: 'static/images/list/xiduoxiduo.jpg'
+              },
+              {
+                //third
+                id:4,
+                name: '红发',
+                imgUrl: 'static/images/list/xiduoxiduo.jpg'
+              },
+              {
+                //third
+                id:5,
+                name: 'SUKI',
+                imgUrl: 'static/images/list/xiduoxiduo.jpg'
+              } 
+            ]
+          }
+        ]
+      },
+      {
+        // first
+        id:3,
+        name: '波奇酱',
+        data: [
+          {
+            // seconed
+            id:0,
+            name: '波奇酱',
+            list: [
+              {
+                //third
+                id:0,
+                name: '波门！',
+                imgUrl: 'static/images/list/boqi.jpg'
+              },
+              {
+                //third
+                id:1,
+                name: '小孤独',
+                imgUrl: 'static/images/list/boqi.jpg'
+              },
+              {
+                //third
+                id:2,
+                name: '吉他英雄',
+                imgUrl: 'static/images/list/boqi.jpg'
+              },
+              {
+                //third
+                id:3,
+                name: '吉他',
+                imgUrl: 'static/images/list/boqi.jpg'
+              },
+              {
+                //third
+                id:4,
+                name: '粉发',
+                imgUrl: 'static/images/list/boqi.jpg'
+              },
+              {
+                //third
+                id:5,
+                name: 'SUKIKKKKK',
+                imgUrl: 'static/images/list/boqi.jpg'
+              } 
+            ]
+          }
+        ]
+      },
+      {
+        // first
+        id:4,
+        name: '02',
+        data: [
+          {
+            // seconed
+            id:0,
+            name: '02',
+            list: [
+              {
+                //third
+                id:0,
+                name: 'darling！',
+                imgUrl: 'static/images/list/02.jpg'
+              },
+              {
+                //third
+                id:1,
+                name: '002',
+                imgUrl: 'static/images/list/02.jpg'
+              },
+              {
+                //third
+                id:2,
+                name: '国家队',
+                imgUrl: 'static/images/list/02.jpg'
+              },
+              {
+                //third
+                id:3,
+                name: '望鹤兰',
+                imgUrl: 'static/images/list/02.jpg'
+              },
+              {
+                //third
+                id:4,
+                name: '粉发',
+                imgUrl: 'static/images/list/02.jpg'
+              },
+              {
+                //third
+                id:5,
+                name: 'SUKIKKKKK',
+                imgUrl: 'static/images/list/02.jpg'
+              } 
+            ]
+          }
+        ]
+      }
+    ]
+  })
+})
+
+// 返回shoplist的数据
 router.get('/api/goods/shopList',async (req,res,next)=>{
   let searchName = req.query.searchName
   let type = req.query.type
