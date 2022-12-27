@@ -118,7 +118,7 @@ export default {
   flex-direction: column;
   .headers{
     h1{
-      font-size: 28px;
+      font-size: 24px;
       margin-top: 0.2857rem;
       margin-left: 0.5714rem;
     }
