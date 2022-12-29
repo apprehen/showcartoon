@@ -50,6 +50,12 @@ export default new Router({
       ],
       component: () =>
         import('@/views/Search.vue')
+    },
+    {
+      name: 'Detail',
+      path: '/detail',
+      component: () =>
+        import('@/views/Detail.vue')
     }
   ]
 })

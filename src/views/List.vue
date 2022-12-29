@@ -18,32 +18,40 @@
     </div>
     </div>
     <section>
-      <div class="list-l">
+      <div class="list-l" ref="left">
         <ul class="l-items">
-          <li class="active"
+          <li
+          :class="{active:index === currentIndex}"
           v-for="(item,index) in leftData"
           :key="index"
+          @click="goSrcoll(index)"
           >{{ item.name}}</li>
         </ul>
       </div>
-      <div class="list-r">
-        <div class="top-img">
-          <img src="@/assets/img/list/top.jpg" alt="suki">
-          <div>SUKI!</div>
-        </div>
-        <ul v-for="(item,index) in rightData" :key="index">
-          <li
-          v-for="(k,i) in item" :key="i"
+      <div class="list-r" ref="right">
+        <div>
+          <div class="top-img">
+            <img src="@/assets/img/list/top.jpg" alt="suki">
+            <div>SUKI!</div>
+          </div>
+          <ul
+          v-for="(item,index) in rightData"
+          :key="index"
           class="shop-list">
-            <h2>{{ k.name }}</h2>
-            <ul class="r-content">
-              <li v-for="(thriditem,thridindex) in k.list" :key="thridindex">
-                <img :src="thriditem.imgUrl">
-                <span>{{ thriditem.name }}</span>
-              </li>
-            </ul>
-          </li>
-        </ul>
+            <li
+            v-for="(k,i) in item"
+            :key="i"
+            >
+              <h2>{{ k.name }}</h2>
+              <ul class="r-content">
+                <li v-for="(thriditem,thridindex) in k.list" :key="thridindex">
+                  <img :src="thriditem.imgUrl">
+                  <span>{{ thriditem.name }}</span>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
     <Tabbar></Tabbar>
@@ -53,12 +61,18 @@
 <script>
 import Tabbar from '../components/common/Tabbar.vue'
 import http from '@/common/api/request.js'
+import BScroll from '@better-scroll/core'
 export default {
+  /* eslint-disable */
   name: 'List',
   data () {
     return {
       leftData: [],
-      rightData: []
+      rightData: [],
+      rightBScoll: '',
+      allHeight:[],
+      // currentIndex:''
+      scrollY: ''
     }
   },
   components: {
@@ -68,7 +82,6 @@ export default {
     let res = await http.$axios({
       url: '/api/list'
     })
-    // console.log(res)
     let leftArr = []
     let rightArr = []
     res.forEach(v => {
@@ -78,10 +91,51 @@ export default {
       })
       rightArr.push(v.data)
     })
-    // console.log(lefArr)
     this.leftData = leftArr
     this.rightData = rightArr
-    console.log(this.rightData)
+
+    this.$nextTick(() => {
+        new BScroll(this.$refs.left, {
+          click: true
+        })
+        // 右侧滑动
+        this.rightBScoll = new BScroll(this.$refs.right,{
+          movable: true,
+          zoom: true,
+          click: true,
+          probeType: 3
+        })
+        let height = 196
+        this.allHeight.push(height)
+        // 获取右侧每一块的高度
+        let uls = this.$refs.right.getElementsByClassName('shop-list')
+        // console.log(uls)
+        // 把dom对象转化成真正的数组
+        Array.from(uls).forEach(v => {
+          height += v.clientHeight
+          this.allHeight.push(height)
+        })
+        // 右侧滚动的值
+        this.rightBScoll.on('scroll', (pos) => {
+          this.scrollY = Math.abs(pos.y)
+          // console.log(this.scrollY)
+        })
+      })
+  },
+  methods: {
+    goSrcoll (index) {
+      // console.log(this.allHeight[index+1])
+      this.rightBScoll.scrollTo(0,-this.allHeight[index], 300)
+    }
+  },
+  mounted () {
+  },
+  computed: {
+    currentIndex () {
+      return this.allHeight.findIndex((item,index) => {
+        return this.scrollY >= item && this.scrollY < this.allHeight[index + 1]
+      })
+    }
   }
 }
 </script>
@@ -146,6 +200,9 @@ export default {
     flex: 1;
     overflow: hidden;
     display: flex;
+    position: relative;
+    touch-action: none;
+    height: fit-content;
     .list-l{
       width: 2.48rem;
       background-color: #fff;
@@ -173,8 +230,6 @@ export default {
     .list-r{
       width: 100%;
       height: 100%;
-      // background-color: red;
-      // display: flex;
       overflow: hidden;
       .top-img{
         width: 100%;
@@ -196,9 +251,15 @@ export default {
       .shop-list{
         text-align: center;
         width: 100%;
+        // height: 300px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        li{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
         h2{
           font-size: 0.5714rem;
           font-weight: bold;
@@ -235,11 +296,13 @@ export default {
           display: flex;
           flex-wrap: wrap;
           width: 100%;
+          height: 100%;
           // justify-content: space-around;
           li{
             display: flex;
             flex-direction: column;
             width: 30%;
+            height: 100%;
             margin-left: 3%;
             justify-content: space-around;
             align-items: center;
@@ -248,9 +311,11 @@ export default {
             img{
               border-radius: 50%;
               border: 1px solid #ccc;
-              width: 100%;
+              // width: 100%;
+              height: 90px;
             }
             span{
+              height: 15px;
               font-size: 0.4571rem;
             }
           }

@@ -4,7 +4,7 @@
       <span>猜你喜欢</span>
     </Card>
     <ul>
-      <li v-for="(item,index) in likeList" :key="index">
+      <li v-for="(item,index) in likeList" :key="index" @click="goDetail">
         <img v-lazy="item.imgUrl">
         <h1 class="like-title">{{item.title}}</h1>
         <div class="like-detail">{{item.content}}</div>
@@ -25,6 +25,14 @@ export default {
   },
   data () {
     return {
+    }
+  },
+  methods: {
+    goDetail () {
+      // alert(11)
+      this.$router.push({
+        path: '/detail'
+      })
     }
   }
 }

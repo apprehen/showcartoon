@@ -92,7 +92,8 @@ export default {
       this.$nextTick(() => {
         let bs = new BScroll(this.$refs.wrapper, { // eslint-disable-line no-unused-vars
           movable: true,
-          zoom: true
+          zoom: true,
+          click: true
         })
       })
     },
