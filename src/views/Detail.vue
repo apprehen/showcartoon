@@ -1,15 +1,58 @@
 <template>
   <div class="detail">
-    <div>
-      <swiper :options = "swiperOption" class="">
-        <swiper-slide
-        v-for="(item,index) in swiperList"
-        :key="index">
-          <img :src="item.imgUrl">
-        </swiper-slide>
-      </swiper>
+    <header>
+      <div class="header-return" v-show="isShow">
+        <svg t="1672756953667" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2660" width="24" height="24"><path d="M512.105912 80.83812c-237.365082 0-429.779394 192.56883-429.779394 430.134481 0 237.564627 192.414311 430.132434 429.779394 430.132434 237.387595 0 429.801906-192.567807 429.801906-430.132434C941.907818 273.40695 749.494531 80.83812 512.105912 80.83812zM605.570607 696.710862c10.212596 10.166547 11.227716 25.591865 2.321882 34.477232-8.92937 8.885368-24.465205 7.844665-34.675754-2.297322l-199.88547-197.651592c-5.79089-5.7694-8.53028-13.19451-8.266267-20.180622-0.309038-7.048533 2.432399-14.541181 8.245801-20.35356l199.905936-197.651592c10.210549-10.166547 25.724895-11.183713 34.675754-2.298346 8.905834 8.884344 7.891737 24.311709-2.321882 34.477232L417.64554 510.972601 605.570607 696.710862z" fill="#fff" p-id="2661"></path></svg>
+        <svg t="1672757038015" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3990" width="24" height="24"><path d="M1012.646039 459.30735 535.153 8.876259c-10.824779-11.426156-28.264701-12.027532-39.690857-0.601377L12.556714 458.104597c-7.216519 6.013766-12.027532 16.237169-12.027532 27.663325 0 19.244052 13.831662 34.278468 30.670208 34.278468l108.849169 0 0 354.812208c0 40.89361 15.034416 78.178961 39.089481 105.240909 24.055065 27.061948 57.130779 43.900494 93.814753 43.900494l117.268442 0 0-144.33039 0-272.423611c0-10.824779 4.209636-21.048182 10.223403-28.264701 6.615143-7.216519 15.635792-12.027532 25.257818-12.027532l174.399221 0c9.622026 0 18.642675 4.811013 25.257818 12.027532 6.615143 7.216519 10.223403 17.439922 10.223403 28.264701l0 416.754 159.966182 0 3.60826 0 4.209636 0c22.250935 0 42.69774-10.223403 57.732156-27.061948 15.034416-16.838545 24.055065-39.690857 24.055065-64.948675L885.154195 520.046389 992.800611 520.046389l0 0c9.020649 0 17.439922-4.209636 23.453688-12.027532C1027.079078 492.984441 1025.274949 471.334883 1012.646039 459.30735zM178.536662 452.692207l1.202753 0 0 0.601377C179.739415 453.293584 179.138039 453.293584 178.536662 452.692207z" p-id="3991" fill="#fff"></path></svg>
+      </div>
+      <div class="header-bar" v-show="!isShow" :style="styleOption">
+        <div>
+          <svg t="1672756953667" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2660" width="24" height="24"><path d="M512.105912 80.83812c-237.365082 0-429.779394 192.56883-429.779394 430.134481 0 237.564627 192.414311 430.132434 429.779394 430.132434 237.387595 0 429.801906-192.567807 429.801906-430.132434C941.907818 273.40695 749.494531 80.83812 512.105912 80.83812zM605.570607 696.710862c10.212596 10.166547 11.227716 25.591865 2.321882 34.477232-8.92937 8.885368-24.465205 7.844665-34.675754-2.297322l-199.88547-197.651592c-5.79089-5.7694-8.53028-13.19451-8.266267-20.180622-0.309038-7.048533 2.432399-14.541181 8.245801-20.35356l199.905936-197.651592c10.210549-10.166547 25.724895-11.183713 34.675754-2.298346 8.905834 8.884344 7.891737 24.311709-2.321882 34.477232L417.64554 510.972601 605.570607 696.710862z" fill="#fff" p-id="2661"></path></svg>
+        </div>
+        <div>
+          <span>商品详情</span>
+          <span>商品评价</span>
+        </div>
+        <div>
+          <svg t="1672757038015" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3990" width="24" height="24"><path d="M1012.646039 459.30735 535.153 8.876259c-10.824779-11.426156-28.264701-12.027532-39.690857-0.601377L12.556714 458.104597c-7.216519 6.013766-12.027532 16.237169-12.027532 27.663325 0 19.244052 13.831662 34.278468 30.670208 34.278468l108.849169 0 0 354.812208c0 40.89361 15.034416 78.178961 39.089481 105.240909 24.055065 27.061948 57.130779 43.900494 93.814753 43.900494l117.268442 0 0-144.33039 0-272.423611c0-10.824779 4.209636-21.048182 10.223403-28.264701 6.615143-7.216519 15.635792-12.027532 25.257818-12.027532l174.399221 0c9.622026 0 18.642675 4.811013 25.257818 12.027532 6.615143 7.216519 10.223403 17.439922 10.223403 28.264701l0 416.754 159.966182 0 3.60826 0 4.209636 0c22.250935 0 42.69774-10.223403 57.732156-27.061948 15.034416-16.838545 24.055065-39.690857 24.055065-64.948675L885.154195 520.046389 992.800611 520.046389l0 0c9.020649 0 17.439922-4.209636 23.453688-12.027532C1027.079078 492.984441 1025.274949 471.334883 1012.646039 459.30735zM178.536662 452.692207l1.202753 0 0 0.601377C179.739415 453.293584 179.138039 453.293584 178.536662 452.692207z" p-id="3991" fill="#fff"></path></svg>
+        </div>
+      </div>
+    </header>
+    <section ref="wrapper">
+      <div>
+        <div class="swiper-main">
+          <swiper :options = "swiperOption" class="">
+            <swiper-slide
+            v-for="(item,index) in swiperList"
+            :key="index">
+              <img :src="item.imgUrl">
+            </swiper-slide>
+          </swiper>
       <div class="swiper-pagination" id="dots"></div>
-    </div>
+        </div>
+        <div class="goods-container">
+          <div class="goods_name">
+            <h1>2022波奇酱 - 美少女 珍稀美少女1号</h1>
+            <div>性价首选，美感十足，可可爱爱的大众美少女</div>
+          </div>
+          <div class="goods_price">
+            <div class="oprice">
+              <span>￥</span>
+              <b>88</b>
+            </div>
+            <div class="pprice">
+              <span>价格:</span>
+              <del>￥239</del>
+            </div>
+          </div>
+        </div>
+        <div class="tianchong">
+          <div><img src='static/images/Detail/1.jpg'></div>
+          <div><img src='static/images/Detail/2.jpg'></div>
+          <div><img src='static/images/Detail/3.jpg'></div>
+        </div>
+      </div>
+    </section>
     <footer>
       <ul>
         <li>
@@ -34,6 +77,7 @@
 <script>
 import 'Swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import BScroll from '@better-scroll/core'
 export default {
   name: 'Detail',
   components: {
@@ -42,12 +86,16 @@ export default {
   },
   data () {
     return {
+      isShow: true,
+      bs: '',
+      styleOption: {},
       swiperOption: {
         autoplay: 3000,
         speed: 1000,
         pagination: {
           el: '.swiper-pagination',
-          clickable: true
+          clickable: true,
+          type: 'fraction'
         }
       },
       swiperList: [
@@ -62,12 +110,151 @@ export default {
         }
       ]
     }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.bs = new BScroll(this.$refs.wrapper, { // eslint-disable-line no-unused-vars
+        movable: true,
+        zoom: true,
+        click: true,
+        probeType: 3,
+        bounce: false
+      })
+      this.bs.on('scroll', (pos) => {
+        // console.log(pos.y)
+        let posY = Math.abs(pos.y)
+        let opcity = posY / 220
+        opcity = opcity > 1 ? 1 : opcity
+        this.styleOption = {
+          opacity: opcity
+        }
+        this.isShow = !(posY >= 100)
+      })
+    })
   }
 }
 </script>
 
 <style lang="less" scoped>
 .detail{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  section{
+    flex: 1;
+    overflow: hidden;
+  }
+  header {
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    height: 1.17rem;
+    z-index: 999;
+    .header-return,
+    .header-bar
+    {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      height: 1.17rem;
+      justify-content: space-between;
+      svg {
+        margin: 5px 10px;
+        padding: 6px;
+        border-radius: 50%;
+        background-color: rgba(0,0,0,0.3);
+      }
+    }
+    .header-bar{
+      background-color: #fff;
+      font-size: 0.4857rem;
+      span{
+        padding: 0 0.2857rem;
+      }
+    }
+  }
+  .swiper-main{
+  width: 100%;
+  height: 12rem;
+  position: relative;
+  overflow: hidden;
+  .swiper-container{
+    width: 100%;
+    height: 12rem !important;
+    overflow: hidden !important;
+    position: relative;
+    // background-color: red;
+    img{
+    width: 100%;
+    overflow: hidden;
+    // height: 14rem;
+  }
+  }
+  .swiper-pagination#dots{
+    position: absolute;
+    height: 20px;
+    line-height: 20px;
+    // right: 0px !important;
+    left: 85%;
+    bottom: 10px;
+    font-size: 0.4571rem;
+    color: #fff;
+    width: 50px;
+    background-color: rgba(0,0,0,0.5);
+    // background-color: red;
+  }
+  }
+  .goods-container{
+    .goods_name{
+      padding: 0.5714rem 0.2rem;
+      padding-bottom: 0.2286rem;
+      color: #999;
+      border-bottom: 1px #ccc solid;
+      h1{
+        font-size: 0.5429rem;
+        font-weight: 600;
+        color: black;
+      }
+      div{
+        font-size: 0.4rem;
+        padding: 0.1057rem 0;
+      }
+    }
+    .goods_price{
+      padding: 0.2286rem 0.2rem;
+      // padding-bottom: 0.2286rem;
+      .oprice{
+        color: red;
+        span{
+          font-size: 0.3429rem;
+        }
+        b{
+          font-size: 0.5143rem;
+          margin-left: -0.1429rem;
+        }
+      }
+      .pprice{
+        color: #999;
+        font-size: 0.4rem;
+        del{
+          margin-left: -0.1429rem;
+        }
+      }
+    }
+  }
+  .tianchong{
+    div{
+      width: 100%;
+      height: 14.2857rem;
+      overflow: hidden;
+      img{
+        width: 100%;
+      }
+    }
+  }
   footer{
     width: 100%;
     position: fixed;

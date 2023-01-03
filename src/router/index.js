@@ -56,6 +56,12 @@ export default new Router({
       path: '/detail',
       component: () =>
         import('@/views/Detail.vue')
+    },
+    {
+      name: 'test',
+      path: '/test',
+      component: () =>
+        import('@/views/test.vue')
     }
   ]
 })
